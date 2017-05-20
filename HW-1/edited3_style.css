@@ -1,0 +1,221 @@
+.wrapper {
+	background-color: white;
+    width: 1173px;
+	height:1320px;
+    margin: auto;
+	
+	
+}
+#loc{
+	background-color:black;
+	font-family: sans-serif;
+	color:white;
+	padding:20px;
+	width:320px;
+	height:172px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top: 50px;
+	letter-spacing: 3.5px;
+	
+	font-size:12px;
+	text-align:center;
+	
+}
+
+#img1{
+	
+	display:block;
+	height:auto;
+	margin-left:90px;
+}
+
+#first-content{
+	margin-left:422px;
+	margin-top:-262px;
+	font-family: sans-serif;
+	font-size:14px;
+	letter-spacing:3px;
+	font-weight:600;
+	color:#CFB53B;
+	
+}
+
+#second-content{
+	
+	text-align:center;
+	line-height:4px;
+	margin-top:27px;
+	font-family: sans-serif;
+	font-weight:500;
+	letter-spacing:0px;
+	
+}
+
+#button1{
+	background-color: white;
+    border: solid;
+    color: black;
+	font-family: sans-serif;
+    padding: 20px;
+	width:215px;
+	letter-spacing:2.5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin-left:15px;
+    cursor: pointer;
+	height:12px;
+}
+
+
+
+#third-content{
+	background-color:#191919;	
+	font-family:sans-serif; 
+	color:white; 
+	width:448.8px; 
+	height:145px; 
+	margin-top:150px; 
+	border-style:solid;
+	border-width:0.5px;
+	border-color:gray;
+	
+	float:left;
+	text-align:center;
+	line-height:25px;
+	letter-spacing:2.75px;
+	font-size:12px;
+	font-weight:bold;
+	margin-left:-10px;
+}
+
+#fourth-content{
+	background-color:#191919;	
+	font-family:sans-serif; 
+	color:white; 
+	width:733px; 
+	height:146px; 
+	margin-top:93px; 
+	border-style:solid;
+	border-width:0.25px;
+	border-color:gray;
+	margin-right:-2px;
+	float:right;
+		
+}
+
+input[type=text]{
+    width: 250px;
+    padding:12px;
+    margin-left:80px;
+	margin-top:-70px;
+    display: inline-block;
+    border: 1px solid;
+	font-family:sans-serif;
+	letter-spacing:0.25px;
+	font-weight:bold;
+	font-size:16px;
+	color:#505050;
+	
+	
+    
+}
+
+#button2{
+	background-color: black;
+    border: solid;
+    color: white;
+	font-family: sans-serif;
+    padding: 20px;
+	width:165px;
+	letter-spacing:2.5px;
+    text-align: center;
+	border:solid;
+	border-color:white;
+    display: inline-block;
+    font-size: 14px;
+    margin-left:-5px;
+    cursor: pointer;
+	height:8px;
+	margin-top:-20px;
+}
+
+#button3{
+	background-color: black;
+    border: solid;
+    color: white;
+	font-family: sans-serif;
+    padding: 15px;
+	position:absolute;
+	width:165px;
+	letter-spacing:2.5px;
+    text-align: center;
+	border:solid;
+	border-color:white;
+    display: inline-block;
+    font-size: 14px;
+    margin-left:35px;
+    cursor: pointer;
+	height:10px;
+	margin-top:-20px;
+}
+#fifth-content{
+	background-color:#191919;
+	width:448.8px;
+	height:350px;
+	
+	font-family: sans-serif;
+	color:white;
+	margin-left:-9px;
+	float:left;
+	
+}
+#sixth-content{
+	background-color:#191919;
+	width:733px;
+	height:349.65px;
+	font-family: sans-serif;
+	color:white;
+	float:right;
+	
+	
+}
+#first-part{
+	background-color:black;
+	font-family: Helvetica;
+	color:white;
+	margin-left:15px;
+	margin-top:-5px;
+}
+
+#second-part{
+	background-color:black;
+	font-family: Helvetica;
+	color:white;
+	letter-spacing:1px;
+	font-size:78px;
+	float:right;
+	line-height:-10px;
+	margin-top:-15px;
+	margin-right:78px;
+	
+}
+#button1:hover{
+	background-color:black;
+	color:white;
+}
+
+#button2:hover{
+	background-color:white;
+	color:black;
+}
+#button3:hover{
+	background-color:white;
+	color:black;
+}
+#third-content:hover{
+	text-decoration:underline;
+	
+}
