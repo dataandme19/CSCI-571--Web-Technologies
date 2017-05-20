@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>HOMEWORK 4</title>
+		<script type="text/javascript">
+		function generateHTML(xmlDoc)
+		{  
+			ELEMENT_NODE = 1; 
+			html_text="<html><head><title>XML Parse Result</title></head><body>";
+			
+			html_text+="<table border='2'>";
+			html_text+="<tbody>";
+			
+			
+			for(i=0;i<6;i++)
+			{
+			
+				header1=xmlDoc.getElementsByTagName("Data").item(i).firstChild.nodeValue;
+				html_text+="<th>"+header1+"</th>";
+			}
+			
+			var rows=xmlDoc.getElementsByTagName("Row");
+			
+			
+			for(i=0;i<rows.length;i++)
+			{
+				html_text+="<tr>";
+				funcGeneral(rows[i],"Airline");
+				funcGeneral(rows[i],"IATA");
+				funcHubs(rows[i]);
+				funcGeneral(rows[i],"Notes");
+				funcHomePage(rows[i]);
+				funcPlane(rows[i]);
+			
+				html_text+="</tr>";
+			}
+			
+			
+			html_text+="</tbody>"; 
+			html_text+="</table>";
+			html_text+="</body></html>"; 
+			
+			if(!(rows.length >0)) 
+			{
+				alert("No Airlines Listed");
+			}
+			else 
+			{
+				hWind = window.open("", "XML Output", "height=700,width=1200,resizable=yes,scrollbars=yes");
+				hWind.document.write(html_text);
+			}
+
+		}
+		
+		function funcGeneral(xmlDoc,tag)
+		{
+		
+			var tag1=xmlDoc.getElementsByTagName(tag);
+			
+			if(tag1.length!=0)
+			{
+			
+				if(tag1[0].childNodes.length>0)
+				{
+					
+					html_text+="<td>"+tag1[0].firstChild.nodeValue+"</td>";
+				}
+				
+				else
+				{
+					html_text+="<td>"+" "+"</td>";
+				}
+			}
+		}
+		function funcHubs(xmlDoc)
+		{
+			var tag2=xmlDoc.getElementsByTagName("Hubs");
+			
+			if( tag2[0].childNodes.length ==0 ) 
+			{
+			html_text+="<td>"+" "+"</td>"; 
+			}
+			else
+			{
+				html_text+="<td>";
+				html_text+="<ul>";
+			
+			
+			
+				for(a=1;a<tag2[0].childNodes.length;a++)
+				{
+					
+					
+					if(tag2[0].childNodes[a].nodeType==1)
+					{
+						
+						
+						if(a==1)
+						{
+							if(tag2[0].childNodes[a].childNodes.length==0)
+							{
+							html_text+="<li>"+" "+"</li>";
+							}
+							else
+							{
+							html_text+="<li><strong>"+tag2[0].childNodes[1].firstChild.nodeValue+"</strong></li>";
+							}
+						}
+						else
+						{
+						
+						if (tag2[0].childNodes[a].childNodes.length==0)
+						{
+							html_text+="<li>"+" "+"</li>";
+						}
+						else
+						{
+						html_text+="<li>"+tag2[0].childNodes[a].firstChild.nodeValue+"</li>";
+						}
+						}
+					}
+					
+					
+				}
+				
+				html_text+="</ul>";
+				html_text+="</td>";
+			}
+		}
+		
+		function funcHomePage(xmlDoc)
+		{
+			var tag3=xmlDoc.getElementsByTagName("HomePage");
+			
+			
+			
+			if(tag3.length!=0)
+			{
+			
+				if(tag3[0].childNodes.length>0)
+				{
+					
+					html_text+="<td><a href='"+tag3[0].firstChild.nodeValue+"'>"+tag3[0].firstChild.nodeValue+"</a></td>";
+				}
+				
+				else
+				{
+					html_text+="<td>"+" "+"</td>";
+				}
+			}
+			
+			
+		}
+		
+		
+		function funcPlane(xmlDoc)
+		{	
+		
+			var tag4=xmlDoc.getElementsByTagName("Plane");
+			
+			if(tag4.length!=0)
+			{
+				if(tag4[0].childNodes.length>0)
+				
+					var x=300;
+					var y=200;
+					html_text+="<td><img src='"+tag4[0].firstChild.nodeValue+"'width='"+x+"' height='"+y+"'></td>";
+				}
+				else
+				{
+					html_text+="<td>"+" "+"</td>";
+				}
+			}
+
+			function LoadXML(url) {
+			
+			if (window.XMLHttpRequest) 
+			{
+            xmlhttp = new XMLHttpRequest();
+			} 
+			else 
+			{
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			try 
+			{
+			xmlhttp.open("GET", url, false); 
+			xmlhttp.send();
+			}
+			catch(err)
+			{
+				alert("Enter a valid file name");
+				return;
+			}
+        
+			var domParser = new DOMParser();
+			var xml = domParser.parseFromString(xmlhttp.responseText, "text/xml");
+			if (xml.documentElement.nodeName == "parsererror") {
+            alert("Enter a valid XML File");
+            return;
+        }
+        xmlDoc = xmlhttp.responseXML;
+        generateHTML(xmlDoc);
+    }
+</script>
+	</head>
+	<body>
+		<h2 style="margin-left:500px;margin-top:120px;">Enter URL for Airlines List XML File</h2>
+		<form action="javascript:void(0);" id="xml-form">
+			<input style="margin-left:590px;" type="text" id="url" maxlength="150" size="33"  />
+			</br>
+			</br>
+			<button style="margin-left:610px;" onclick="LoadXML(document.getElementById('url').value)">Submit Query</button>
+			
+			
+			
+			
+		</form>
+
+	</body>
+	
+	
+	
+
+</html>
