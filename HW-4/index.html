@@ -1,0 +1,372 @@
+    <!DOCTYPE html>
+    <html  ng-app="test"  >
+   <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="Bootstrap_sample.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+       <link data-require="font-awesome@*" data-semver="4.3.0" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+       <script src="ui-bootstrap-tpls-0.9.0.js"></script>
+       <script src="index.js"></script>
+        
+               <script>
+function move() {
+  var elem = document.getElementById("myBar");   
+  var width = 1;
+  var id = setInterval(frame, 10);
+  function frame() {
+    if (width >= 100) {
+      clearInterval(id);
+    } else {
+      width++; 
+      elem.style.width = width + '%'; 
+    }
+  }
+}
+</script>
+       
+       <!--<script>
+      $(document).ready(function () {
+    $('.glyphicon glyphicon-star-empty').click(function () {
+        $(this).parent("div").find(".glyphicon glyphicon-star-empty")
+            .toggleClass("glyphicon glyphicon-star");
+    });
+});
+           
+           $(document).ready(function () {
+    $('.glyphicon').click(function () {
+        $(this).toggleClass(".glyphicon glyphicon-star-empty").toggleClass(".glyphicon glyphicon-star");
+    });
+});
+       </script>-->
+       <!--<script>
+       
+function goBack() {
+    history.go(-1);
+}
+</script>-->
+
+    
+       <style>
+#myProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+
+#myBar {
+  width: 1%;
+  height: 30px;
+  background-color: #3b5998;
+}
+           .glyphicon-star
+           {
+               color: #FFCC11;
+           }
+           .nav-tabs{
+  background-color:white;
+}
+           .nav-tabs > li > a{
+  border: medium none;
+               color:black;
+               background-color:white ;
+}
+           .nav-tabs > li > a:hover{
+  background-color:#3b5998 !important;
+    border: medium none;
+    border-radius: 0;
+    color:black;
+}
+           .active a{
+               background-color:#3b5998 !important;
+               color:black;
+           } 
+</style>
+       
+       
+        </head>
+   <body ng-app="test" ng-controller="test">
+        
+       
+       
+                 <div class="container-fluid">
+       
+       <div class="well well-sm">
+      <div class="row">
+                <div class="col-sm-3" style="color:#3b5998; font-family:Arial, Helvetica, sans-serif; font-size:large;text-align:center;" >FB Search</div>
+                <div class="col-sm-4">
+                        <nav class="navbar navbar-default">      
+                            <form class="form" role="search">
+                        <div class="input-group add-on">
+                            <input ng-model="search" class="form-control" placeholder="type something..." name="srch-term" id="srch-term" type="text" size="90em" required>
+        
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary btn-lg" type="submit" ng-click="func1(search,'user')"style="color:#3b5998;width=40;" onclick="move()" size="50"><i class="glyphicon glyphicon-search" style="color: white; " ></i></button>
+                        </div>
+                            <div class="col-sm-3">
+                            <button class="btn btn-default" type="submit" ng-click="func3clear()">CLEAR</button>
+                            </div>
+                        </div>
+                    </form> </nav> 
+       
+       
+       </div>
+       </div>
+       
+           </div>
+       </div>
+       
+        <nav>
+             <div class="panel-heading ph2">
+                                       <ul class="nav nav-justified nav-tabs" style="width:100%;" ng-model="type_name">
+                                            <li  id="fav1" class="active" ><a data-toggle="tab" ng-click="func1(search,'user')">Users</a></li>
+                                            <li id="fav2"><a data-toggle="tab" ng-click="func1(search,'page')">Pages</a></li>
+                                            <li id="fav3"><a data-toggle="tab" ng-click="func1(search,'event')">Events</a></li>
+                                           <li id="fav4"><a data-toggle="tab" ng-click="func1(search,'place')">Places</a></li>
+                                           <li id="fav5"><a data-toggle="tab" ng-click="func1(search,'group')">Groups</a></li>
+                                           <li id="fav6"><a data-toggle="tab" ng-click="funcfavtab()">Favorites</a></li>
+                                        </ul>
+                 
+             </div>
+        
+        </nav>
+       
+        
+        <div class="container-fluid" ng-show="firstpage"> 
+            
+             <div class="table-responsive"> 
+                 
+</div>
+            <table class="table table-hover">
+                <div id="myProgress" class="progress-bar" role="progressbar" ng-show="prog" >
+  <div id="myBar"></div>
+</div>
+                <thead>
+                    
+                    <tr>
+                        <th>#</th>
+                        <th>Profile photo</th>
+                        <th>Name</th>
+                        <th>Favorite</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                
+                <tbody ng-repeat="x in myData">
+                    <tr>
+                        <td>{{x["index"]}}</td>
+                        <td><img style="width:30px;height:30px;" ng-src="{{x.url}}"></td>
+                        <td>{{x["name"]}}</td>
+                        
+                        <td> <a class="btn btn-default" ng-click="favfunc(x.id,x.name,x.url,type_name,x.index)"><i ng-class="(x['mark']==1)?'glyphicon glyphicon-star':'glyphicon glyphicon-star-empty'" ></i></a></td>
+                        <td ><button class="btn btn-default" type="submit" ng-click="func2(x.id,x.name,x.url,'details')"><i class="glyphicon glyphicon-chevron-right"></i></button></td>
+                    </tr>
+                </tbody>
+                
+            </table>
+                 
+       
+     
+      <div class="row">
+                <div class="col-sm-6">
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button class="btn btn-default" type="submit" ng-show="Prev">PREV</button>        
+            </div>
+                <div class="col-sm-6">
+       <button class="btn btn-default" type="submit" ng-show="Next" ng-click="funcnext()">NEXT</button>
+      
+       </div>
+        </div>
+          
+       </div>
+       
+        <div class="container-fluid" ng-show="secondpage">
+           
+            <div class="row" >
+                <div class="col-sm-6">
+                      <!--<button class="btn btn-default" type="submit" ng-click="goBack()" >BACK</button>-->
+                         
+                    <a href="#" class="btn btn-default btn-sm" ng-click="goBack()">
+                    <span class="glyphicon glyphicon-chevron-left"></span> Back
+                    </a>
+                </div>
+                
+                <div class="col-sm-6">
+                    <div class="pull-right">
+                        <img src="http://cs-server.usc.edu:45678/hw/hw8/images/facebook.png" width="20" height="20" ng-click="postfunc(name,pic)"/></div>
+                </div>
+            </div>
+        
+      
+                          <!-- <div class="col-md-6">
+
+
+<div class="panel panel-default">
+            <div class="panel-heading">Albums
+            </div>
+            <div class="panel-body">
+
+    <div class="panel-body" style="background:#ffeecc;" ng-show="no_albums"> No data found</div>
+      <accordion close-others="status.oneAtATime">
+        <accordion-group ng-repeat="item in details" is-open="status.isItemOpen[$index]" ng-show="albums">
+          <accordion-heading> {{item["name"]}}</accordion-heading>
+          <div class="row">
+            
+          <div class="panel panel-default" id="my_panel1" >
+                      <img src={{item['0']}} alt="" class=class="img-responsive " />
+                    </div>
+                    <div class="panel panel-default" id="my_panel2">
+                      <img src={{item['1']}} alt="" class=class="img-responsive " />
+                    </div>
+
+          </div>
+        </accordion-group>
+      </accordion>
+    </div>
+    </div>
+  </div>  -->        
+                      
+                      
+        <div class="row">
+
+
+   <!-- <div class="col-md-6">
+
+
+<div class="panel panel-default">
+            <div class="panel-heading">Albums
+            </div>
+            <div class="panel-body">
+
+    <div class="panel-body" style="background:#ffeecc;" ng-show="no_albums"> No data found</div>
+      <accordion close-others="status.oneAtATime">
+        <accordion-group ng-repeat="item in details" is-open="status.isItemOpen[$index]" ng-show="albums">
+          <accordion-heading> {{item["name"]}}</accordion-heading>
+          <div class="row">
+            
+          <div class="panel panel-default" id="my_panel1" >
+                      <img src={{item['0']}} alt="" class="img-responsive " />
+                    </div>
+                    <div class="panel panel-default" id="my_panel2">
+                      <img src={{item['1']}} alt="" class="img-responsive " />
+                    </div>
+
+          </div>
+        </accordion-group>
+      </accordion>
+    </div>
+    </div>
+  </div>-->
+
+          <div class="col-md-6">
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Albums
+                    </div>
+                    <div class="panel-body">
+                <!--{{posts}}eefdfdds-->
+
+                <div class="panel-body" style="background:#ffeecc;" ng-show="no_albums"> No data found
+                    </div>
+      
+                    <div ng-repeat="item in details" >
+                        <a data-toggle="collapse" href="#collapse1{{$index}}">{{item["name"]}}</a>
+                        <div id="collapse1{{$index}}" class="panel-collapse collapse"style="background:#ffeecc;">
+                        <div class="panel" >
+                            <div class="row">
+            
+                                <div class="panel panel-body" id="my_panel1" >
+                                <img src={{item['0']}} alt="" class="img-responsive " />
+                                </div>
+                                <div class="panel panel-body" id="my_panel2">
+                                <img src={{item['1']}} alt="" class="img-responsive " />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+              </div></div>
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">Posts
+          </div>
+
+          <div class="panel-body">
+
+
+
+
+          <div class="panel-body" style="background:#ffeecc;" ng-show="no_posts"> No data found</div>
+
+            <div class="panel-group" ng-repeat="item in posts" ng-show="posts">
+              <div class="panel panel-default">
+
+
+                <div class="panel-heading" id="posts-panel-heading"><div class="row">
+                <div class="col-md-2"><img src={{item.url}} width="10" height="10"/></div>&nbsp;&nbsp;&nbsp; <div class="col-md-6">{{item["name"]}}<br>
+               <span style="color:gray;"> {{item["date"]|date:'yyyy-MM-dd HH:mm:ss' }}</span></div></div></div>
+                <div class="panel-body">
+
+                  {{item["message"]}}
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+            
+       </div>
+       
+       
+       
+       
+       
+       <div class="container-fluid" ng-show="favoritespage"> 
+            <div id="myProgress" class="progress-bar" role="progressbar" ng-show="prog" >
+  <div id="myBar"></div>
+</div>
+             <div class="table-responsive">  
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Profile photo</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Favorite</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="x in favData">
+                    <tr>
+                        <td>{{x["index"]}}</td>
+                        <td><img style="width:30px;height:30px;" ng-src={{x["url"]}}></td>
+                        <td>{{x["name"]}}</td>
+                        <td>{{x["type"]}}</td>
+                        
+                        <td> <a class="btn btn-default" ng-click="deletefavfunc(x['id'])" ><i class="glyphicon glyphicon-trash" ></i></a></td>
+                        <td ><button class="btn btn-default" type="submit" ng-click="func2(x['id'],'details')"><i class="glyphicon glyphicon-chevron-right"></i></button></td>
+                    </tr>
+                </tbody>
+                
+            </table>
+                 
+        </div>
+     
+      
+       </div> 
+        
+   
+    </body>
+    </html>
